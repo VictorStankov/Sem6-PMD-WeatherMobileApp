@@ -74,22 +74,35 @@ public class WeatherHelper {
         Location location = getLocation(activity);
 
         if (location != null) {
-                TextView weather_information = activity.findViewById(R.id.city_name);
-                JsonObjectRequest weather_api = new JsonObjectRequest(api_base_url + "current.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude(), null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            weather_information.setText(response.getJSONObject("location").getString("region"));
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
+            TextView regionCountry = activity.findViewById(R.id.region_country);
+            TextView cityName = activity.findViewById(R.id.city_name);
+            TextView condition = activity.findViewById(R.id.condition);
+            TextView curTempText = activity.findViewById(R.id.cur_temp_text);
+            TextView currentTemp = activity.findViewById(R.id.current_temp);
+            TextView feelsLikeText = activity.findViewById(R.id.feels_like_text);
+            TextView feelsLikeTemp = activity.findViewById(R.id.feels_like_temp);
+            JsonObjectRequest weather_api = new JsonObjectRequest(api_base_url + "current.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude(), null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String regCountryText = response.getJSONObject("location").getString("region") + ", " +
+                                response.getJSONObject("location").getString("country");
+                        regionCountry.setText(regCountryText);
+                        cityName.setText(response.getJSONObject("location").getString("name"));
+                        condition.setText(response.getJSONObject("current").getJSONObject("condition").getString("text"));
+                        curTempText.setText("Current Temperature:");
+                        currentTemp.setText(response.getJSONObject("current").getString("temp_c") + "° C");
+                        feelsLikeText.setText("Feels like:");
+                        feelsLikeTemp.setText(response.getJSONObject("current").getString("feelslike_c") + "° C");
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        weather_information.setText(error.getMessage());
-                    }
-                });
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
 
             RequestQueue requestQueue = Volley.newRequestQueue(activity);
             requestQueue.add(weather_api);
