@@ -29,25 +29,8 @@ import com.example.sem6_pmd_weathermobileapp.databinding.ActivityMainBinding;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
-    Boolean locationPerm = false;
-    LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-        }
-    };
+    String api_url;
+    String api_token;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -72,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
         super.onCreate(savedInstanceState);
+
+        api_url = ConfigHelper.getConfigValue(this, "api_url");
+        api_token = ConfigHelper.getConfigValue(this, "api_token");
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
