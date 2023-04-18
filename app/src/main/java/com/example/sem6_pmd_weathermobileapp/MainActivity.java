@@ -16,8 +16,8 @@ import com.example.sem6_pmd_weathermobileapp.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    String api_url;
-    String api_token;
+    private String api_url;
+    private String api_token;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
