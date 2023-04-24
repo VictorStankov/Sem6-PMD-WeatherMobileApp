@@ -9,8 +9,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.ActivityCompat;
 
 import com.android.volley.RequestQueue;
@@ -81,19 +83,40 @@ public class WeatherHelper {
             TextView currentTemp = activity.findViewById(R.id.current_temp);
             TextView feelsLikeText = activity.findViewById(R.id.feels_like_text);
             TextView feelsLikeTemp = activity.findViewById(R.id.feels_like_temp);
-            JsonObjectRequest weather_api = new JsonObjectRequest(api_base_url + "current.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude(), null, new Response.Listener<JSONObject>() {
+            ImageView weatherImage = activity.findViewById(R.id.weatherImage);
+
+            JsonObjectRequest weather_api = new JsonObjectRequest(api_base_url + "current.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude() + "&lang=en", null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        String regCountryText = response.getJSONObject("location").getString("region") + ", " +
-                                response.getJSONObject("location").getString("country");
+                        JSONObject location = response.getJSONObject("location");
+                        JSONObject current = response.getJSONObject("current");
+                        JSONObject condition = current.getJSONObject("condition");
+
+                        String regCountryText = location.getString("region") + ", " + location.getString("country");
+                        String icon = condition.getString("icon");
+                        boolean is_day = current.getInt("is_day") == 1;
+
+                        String displayIcon = (is_day ? "d" : "n") + icon.substring(icon.lastIndexOf('/') + 1, icon.lastIndexOf('/') + 4);
+
+                        weatherImage.setImageDrawable(
+                                AppCompatResources.getDrawable(
+                                        activity,
+                                        activity.getResources().getIdentifier(
+                                                displayIcon,
+                                                "drawable",
+                                                activity.getPackageName()
+                                        )
+                                )
+                        );
+
                         regionCountry.setText(regCountryText);
-                        cityName.setText(response.getJSONObject("location").getString("name"));
+                        cityName.setText(location.getString("name"));
                         condition.setText(response.getJSONObject("current").getJSONObject("condition").getString("text"));
                         curTempText.setText("Current Temperature:");
-                        currentTemp.setText(response.getJSONObject("current").getString("temp_c") + "° C");
+                        currentTemp.setText(current.getString("temp_c") + "° C");
                         feelsLikeText.setText("Feels like:");
-                        feelsLikeTemp.setText(response.getJSONObject("current").getString("feelslike_c") + "° C");
+                        feelsLikeTemp.setText(current.getString("feelslike_c") + "° C");
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
