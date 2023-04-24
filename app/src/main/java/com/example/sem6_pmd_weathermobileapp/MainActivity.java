@@ -65,12 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.refreshButton:
-                WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.refreshButton) {
+            WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
