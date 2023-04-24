@@ -78,7 +78,7 @@ public class WeatherHelper {
         if (location != null) {
             TextView regionCountry = activity.findViewById(R.id.region_country);
             TextView cityName = activity.findViewById(R.id.city_name);
-            TextView condition = activity.findViewById(R.id.condition);
+            TextView conditionText = activity.findViewById(R.id.conditionText);
             TextView curTempText = activity.findViewById(R.id.cur_temp_text);
             TextView currentTemp = activity.findViewById(R.id.current_temp);
             TextView feelsLikeText = activity.findViewById(R.id.feels_like_text);
@@ -112,7 +112,7 @@ public class WeatherHelper {
 
                         regionCountry.setText(regCountryText);
                         cityName.setText(location.getString("name"));
-                        condition.setText(response.getJSONObject("current").getJSONObject("condition").getString("text"));
+                        conditionText.setText(condition.getString("text"));
                         curTempText.setText("Current Temperature:");
                         currentTemp.setText(current.getString("temp_c") + "° C");
                         feelsLikeText.setText("Feels like:");
