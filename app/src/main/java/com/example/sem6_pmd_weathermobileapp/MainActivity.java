@@ -2,8 +2,7 @@ package com.example.sem6_pmd_weathermobileapp;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -35,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        Button location_button = findViewById(R.id.location_button);
-
-        location_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
-            }
-        });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -69,5 +60,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refreshButton:
+                WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
