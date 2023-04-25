@@ -3,8 +3,12 @@ package com.example.sem6_pmd_weathermobileapp;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -70,5 +74,42 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("cityName", ((TextView)findViewById(R.id.city_name)).getText().toString());
+        outState.putString("regionCountry", ((TextView)findViewById(R.id.region_country)).getText().toString());
+        outState.putString("conditionText", ((TextView)findViewById(R.id.conditionText)).getText().toString());
+        outState.putString("curTempText", ((TextView)findViewById(R.id.cur_temp_text)).getText().toString());
+        outState.putString("currentTemp", ((TextView)findViewById(R.id.current_temp)).getText().toString());
+        outState.putString("feelsLikeText", ((TextView)findViewById(R.id.feels_like_text)).getText().toString());
+        outState.putString("feelsLikeTemp", ((TextView)findViewById(R.id.feels_like_temp)).getText().toString());
+        outState.putString("weatherImage", (String)((ImageView)findViewById(R.id.weatherImage)).getTag());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        ((TextView)findViewById(R.id.city_name)).setText(savedInstanceState.getString("cityName"));
+        ((TextView)findViewById(R.id.region_country)).setText(savedInstanceState.getString("regionCountry"));
+        ((TextView)findViewById(R.id.conditionText)).setText(savedInstanceState.getString("conditionText"));
+        ((TextView)findViewById(R.id.cur_temp_text)).setText(savedInstanceState.getString("curTempText"));
+        ((TextView)findViewById(R.id.current_temp)).setText(savedInstanceState.getString("currentTemp"));
+        ((TextView)findViewById(R.id.feels_like_text)).setText(savedInstanceState.getString("feelsLikeText"));
+        ((TextView)findViewById(R.id.feels_like_temp)).setText(savedInstanceState.getString("feelsLikeTemp"));
+        ImageView image = findViewById(R.id.weatherImage);
+        image.setImageDrawable(AppCompatResources.getDrawable(
+                this,
+                this.getResources().getIdentifier(
+                        savedInstanceState.getString("weatherImage"),
+                        "drawable",
+                        this.getPackageName()
+                )
+        ));
+        image.setTag(savedInstanceState.getString("weatherImage"));
     }
 }
