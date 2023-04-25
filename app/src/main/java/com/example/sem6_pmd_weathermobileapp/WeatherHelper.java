@@ -109,6 +109,7 @@ public class WeatherHelper {
                                         )
                                 )
                         );
+                        weatherImage.setTag(displayIcon);
 
                         regionCountry.setText(regCountryText);
                         cityName.setText(location.getString("name"));
