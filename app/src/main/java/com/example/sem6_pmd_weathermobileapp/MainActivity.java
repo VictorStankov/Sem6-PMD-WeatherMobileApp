@@ -2,8 +2,7 @@ package com.example.sem6_pmd_weathermobileapp;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,8 +15,8 @@ import com.example.sem6_pmd_weathermobileapp.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    String api_url;
-    String api_token;
+    private String api_url;
+    private String api_token;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -35,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        Button location_button = findViewById(R.id.location_button);
-
-        location_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
-            }
-        });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -55,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
     }
 
     @Override
@@ -69,5 +61,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.refreshButton) {
+            WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

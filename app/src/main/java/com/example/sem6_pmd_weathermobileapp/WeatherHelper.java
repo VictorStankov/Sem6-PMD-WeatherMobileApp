@@ -9,8 +9,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.app.ActivityCompat;
 
 import com.android.volley.RequestQueue;
@@ -74,22 +76,56 @@ public class WeatherHelper {
         Location location = getLocation(activity);
 
         if (location != null) {
-                TextView weather_information = activity.findViewById(R.id.city_name);
-                JsonObjectRequest weather_api = new JsonObjectRequest(api_base_url + "current.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude(), null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            weather_information.setText(response.getJSONObject("location").getString("region"));
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
+            TextView regionCountry = activity.findViewById(R.id.region_country);
+            TextView cityName = activity.findViewById(R.id.city_name);
+            TextView conditionText = activity.findViewById(R.id.conditionText);
+            TextView curTempText = activity.findViewById(R.id.cur_temp_text);
+            TextView currentTemp = activity.findViewById(R.id.current_temp);
+            TextView feelsLikeText = activity.findViewById(R.id.feels_like_text);
+            TextView feelsLikeTemp = activity.findViewById(R.id.feels_like_temp);
+            ImageView weatherImage = activity.findViewById(R.id.weatherImage);
+
+            JsonObjectRequest weather_api = new JsonObjectRequest(api_base_url + "current.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude() + "&lang=en", null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        JSONObject location = response.getJSONObject("location");
+                        JSONObject current = response.getJSONObject("current");
+                        JSONObject condition = current.getJSONObject("condition");
+
+                        String regCountryText = location.getString("region") + ", " + location.getString("country");
+                        String icon = condition.getString("icon");
+                        boolean is_day = current.getInt("is_day") == 1;
+
+                        String displayIcon = (is_day ? "d" : "n") + icon.substring(icon.lastIndexOf('/') + 1, icon.lastIndexOf('/') + 4);
+
+                        weatherImage.setImageDrawable(
+                                AppCompatResources.getDrawable(
+                                        activity,
+                                        activity.getResources().getIdentifier(
+                                                displayIcon,
+                                                "drawable",
+                                                activity.getPackageName()
+                                        )
+                                )
+                        );
+
+                        regionCountry.setText(regCountryText);
+                        cityName.setText(location.getString("name"));
+                        conditionText.setText(condition.getString("text"));
+                        curTempText.setText("Current Temperature:");
+                        currentTemp.setText(current.getString("temp_c") + "° C");
+                        feelsLikeText.setText("Feels like:");
+                        feelsLikeTemp.setText(current.getString("feelslike_c") + "° C");
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        weather_information.setText(error.getMessage());
-                    }
-                });
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
 
             RequestQueue requestQueue = Volley.newRequestQueue(activity);
             requestQueue.add(weather_api);
