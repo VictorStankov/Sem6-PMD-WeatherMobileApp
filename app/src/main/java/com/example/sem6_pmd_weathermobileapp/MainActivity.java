@@ -1,6 +1,7 @@
 package com.example.sem6_pmd_weathermobileapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
+//        WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
+        Log.e("ASDDSA", "ASDDSA");
     }
 
     @Override
@@ -102,14 +104,17 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.feels_like_text)).setText(savedInstanceState.getString("feelsLikeText"));
         ((TextView)findViewById(R.id.feels_like_temp)).setText(savedInstanceState.getString("feelsLikeTemp"));
         ImageView image = findViewById(R.id.weatherImage);
-        image.setImageDrawable(AppCompatResources.getDrawable(
-                this,
-                this.getResources().getIdentifier(
-                        savedInstanceState.getString("weatherImage"),
-                        "drawable",
-                        this.getPackageName()
-                )
-        ));
-        image.setTag(savedInstanceState.getString("weatherImage"));
+
+        if (savedInstanceState.getString("weatherImage") != null) {
+            image.setImageDrawable(AppCompatResources.getDrawable(
+                    this,
+                    this.getResources().getIdentifier(
+                            savedInstanceState.getString("weatherImage"),
+                            "drawable",
+                            this.getPackageName()
+                    )
+            ));
+            image.setTag(savedInstanceState.getString("weatherImage"));
+        }
     }
 }
