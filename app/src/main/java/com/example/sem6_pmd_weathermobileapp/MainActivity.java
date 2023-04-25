@@ -51,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-//        WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
-        Log.e("ASDDSA", "ASDDSA");
+        // Add check for existing data when app is recreated
+        // WeatherHelper.getWeatherInformation(MainActivity.this, api_url, api_token);
+        Log.i("Loaded", "App loaded");
     }
 
     @Override
