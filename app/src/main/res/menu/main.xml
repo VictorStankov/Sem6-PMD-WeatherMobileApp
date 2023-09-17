@@ -6,4 +6,9 @@
         android:icon="@drawable/refresh_arrow"
         android:title="Refresh"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/darkModeButton"
+        android:title="Toggle Dark Mode"
+        app:showAsAction="collapseActionView"/>
 </menu>
