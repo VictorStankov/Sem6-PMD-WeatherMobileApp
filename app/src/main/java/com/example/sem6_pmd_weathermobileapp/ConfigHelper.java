@@ -9,15 +9,18 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigHelper {
+    public static String api_url;
+    public static String api_token;
 
-    public static String getConfigValue(Context context, String name){
+    public static void getConfigValues(Context context){
         Resources resources = context.getResources();
 
         try {
             InputStream rawResource = resources.openRawResource(R.raw.config);
             Properties properties = new Properties();
             properties.load(rawResource);
-            return properties.getProperty(name);
+            api_url = properties.getProperty("api_url");
+            api_token = properties.getProperty("api_token");
         }
         catch (Resources.NotFoundException e){
             Log.e("Config", "Unable to find config file: " + e.getMessage());
@@ -25,7 +28,5 @@ public class ConfigHelper {
         catch (IOException e){
             Log.e("Config", "Unable to open config file.");
         }
-
-        return null;
     }
 }
