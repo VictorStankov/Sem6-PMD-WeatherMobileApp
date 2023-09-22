@@ -4,11 +4,11 @@ plugins {
 
 android {
     namespace = "com.example.sem6_pmd_weathermobileapp_v2"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.sem6_pmd_weathermobileapp_v2"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
