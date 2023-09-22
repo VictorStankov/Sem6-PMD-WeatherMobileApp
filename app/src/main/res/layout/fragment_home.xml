@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/region_country"
-        android:layout_width="296dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,8 +17,8 @@
 
     <TextView
         android:id="@+id/city_name"
-        android:layout_width="166dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/region_country"
@@ -34,10 +34,11 @@
 
     <TextView
         android:id="@+id/cur_temp_text"
-        android:layout_width="1dp"
-        android:layout_height="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:text='@string/current_temp'
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conditionText" />
 
@@ -46,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/feels_like"
         app:layout_constraintStart_toStartOf="@+id/cur_temp_text"
         app:layout_constraintTop_toBottomOf="@+id/cur_temp_text" />
 
@@ -60,7 +62,7 @@
         android:id="@+id/conditionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +70,8 @@
 
     <ImageView
         android:id="@+id/weatherImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="24dp"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
@@ -78,7 +80,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city_name"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/d113"
+        android:contentDescription="@string/weather_image_description" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
