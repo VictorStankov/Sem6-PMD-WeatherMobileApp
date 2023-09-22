@@ -16,6 +16,11 @@ import com.example.sem6_pmd_weathermobileapp_v2.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ConfigHelper.getConfigValues(this);
-        Location loc = LocationHelper.getLocation(this);
+        location = LocationHelper.getLocation(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
