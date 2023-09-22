@@ -1,5 +1,6 @@
 package com.example.sem6_pmd_weathermobileapp_v2;
 
+import android.location.Location;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LocationHelper.requestLocationPermission(this);
+
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
