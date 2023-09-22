@@ -46,6 +46,11 @@ public class HomeFragment extends Fragment {
         final ImageView weatherImage = binding.weatherImage;
         homeViewModel.getImage().observe(getViewLifecycleOwner(), weatherImage::setImageDrawable);
 
+        MainActivity activity = (MainActivity) getActivity();
+
+        assert activity != null;
+        WeatherHelper.getCurrentWeather(homeViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
+
         return root;
     }
 
