@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        ConfigHelper.getConfigValues(this);
+        Location loc = LocationHelper.getLocation(this);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
