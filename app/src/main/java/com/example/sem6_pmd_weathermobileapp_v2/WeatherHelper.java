@@ -8,11 +8,11 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sem6_pmd_weathermobileapp_v2.models.DailyForecast;
 import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
+import com.example.sem6_pmd_weathermobileapp_v2.ui.dashboard.DashboardViewModel;
 import com.example.sem6_pmd_weathermobileapp_v2.ui.home.HomeViewModel;
 
 import org.json.JSONArray;
@@ -116,14 +116,68 @@ public class WeatherHelper {
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                }
-            });
+                    }, null);
 
             RequestQueue requestQueue = Volley.newRequestQueue(ctx);
             requestQueue.add(weather_api);
         }
+    }
+
+    public static void getDailyForecast(DashboardViewModel dvm, String api_base_url, String api_token, Location location, Context ctx){
+        List<DailyForecast> dailyForecasts = new ArrayList<>();
+
+        if (location == null)
+            return;
+
+        JsonObjectRequest weather_api = new JsonObjectRequest(
+                Request.Method.GET,
+                api_base_url + "forecast.json?key=" + api_token + "&q=" + location.getLatitude() + "," + location.getLongitude() + "&lang=en&days=10&aqi=no&alerts=no",
+                null,
+                response -> {
+                    try {
+                        JSONArray forecastDay = response.getJSONObject("forecast").getJSONArray("forecastday");
+
+                        LocalDateTime datetime = LocalDateTime.now();
+
+                        for (int i = 0; i < forecastDay.length(); ++i) {
+                            JSONObject forecastDayObj = forecastDay.getJSONObject(i);
+                            JSONObject day = forecastDayObj.getJSONObject("day");
+
+                            String forecastIcon = day.getJSONObject("condition").getString("icon");
+                            String forecastIconName = "d" + forecastIcon.substring(
+                                    forecastIcon.lastIndexOf('/') + 1,
+                                    forecastIcon.lastIndexOf('/') + 4
+                            );
+
+                            Drawable image = AppCompatResources.getDrawable(
+                                    ctx,
+                                    ctx.getResources().getIdentifier(
+                                            forecastIconName,
+                                            "drawable",
+                                            ctx.getPackageName()
+                                    )
+                            );
+
+                            dailyForecasts.add(
+                                new DailyForecast(
+                                        forecastDayObj.getString("date"),
+                                        day.getString("maxtemp_c") + "° C",
+                                        day.getString("mintemp_c") + "° C",
+                                        day.getString("daily_chance_of_rain") + "%",
+                                        image
+                                )
+                            );
+
+                        }
+
+                        dvm.getDailyForecasts().setValue(dailyForecasts);
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, null);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(ctx);
+        requestQueue.add(weather_api);
     }
 }
