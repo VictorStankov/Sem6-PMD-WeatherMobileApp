@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +24,39 @@
         app:layout_constraintStart_toStartOf="@+id/region_country"
         app:layout_constraintTop_toBottomOf="@+id/region_country" />
 
+    <ImageView
+        android:id="@+id/weatherImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="116dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/weather_image_description"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/d113" />
+
+    <TextView
+        android:id="@+id/conditionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/weatherImage"
+        app:layout_constraintStart_toStartOf="@+id/weatherImage"
+        app:layout_constraintTop_toBottomOf="@+id/weatherImage" />
+
+    <TextView
+        android:id="@+id/cur_temp_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text='@string/current_temp'
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city_name" />
+
     <TextView
         android:id="@+id/current_temp"
         android:layout_width="wrap_content"
@@ -30,16 +64,6 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@+id/cur_temp_text"
         app:layout_constraintTop_toTopOf="@+id/cur_temp_text" />
-
-    <TextView
-        android:id="@+id/cur_temp_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="72dp"
-        android:text='@string/current_temp'
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_name" />
 
     <TextView
         android:id="@+id/feels_like_text"
@@ -58,28 +82,38 @@
         app:layout_constraintTop_toTopOf="@+id/feels_like_text" />
 
     <TextView
-        android:id="@+id/conditionText"
+        android:id="@+id/humidity_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/weatherImage"
-        app:layout_constraintStart_toStartOf="@+id/weatherImage"
-        app:layout_constraintTop_toBottomOf="@+id/weatherImage" />
+        android:layout_marginTop="8dp"
+        android:text="@string/humidity"
+        app:layout_constraintStart_toStartOf="@+id/feels_like_text"
+        app:layout_constraintTop_toBottomOf="@+id/feels_like_text" />
 
-    <ImageView
-        android:id="@+id/weatherImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="4dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/weather_image_description"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/feels_like_temp"
+        app:layout_constraintTop_toTopOf="@+id/humidity_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/forecast_hour_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:scrollbars="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_name"
-        tools:srcCompat="@drawable/d113" />
+        app:layout_constraintTop_toBottomOf="@+id/humidity_text" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
