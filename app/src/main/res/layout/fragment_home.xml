@@ -25,14 +25,6 @@
         app:layout_constraintTop_toBottomOf="@+id/region_country" />
 
     <TextView
-        android:id="@+id/current_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/cur_temp_text"
-        app:layout_constraintTop_toTopOf="@+id/cur_temp_text" />
-
-    <TextView
         android:id="@+id/cur_temp_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,6 +33,14 @@
         android:text='@string/current_temp'
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conditionText" />
+
+    <TextView
+        android:id="@+id/current_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/cur_temp_text"
+        app:layout_constraintTop_toTopOf="@+id/cur_temp_text" />
 
     <TextView
         android:id="@+id/feels_like_text"
