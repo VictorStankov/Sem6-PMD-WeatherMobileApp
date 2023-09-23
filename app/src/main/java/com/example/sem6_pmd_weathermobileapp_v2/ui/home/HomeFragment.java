@@ -10,8 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sem6_pmd_weathermobileapp_v2.ConfigHelper;
+import com.example.sem6_pmd_weathermobileapp_v2.CustomAdapter;
 import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
 import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentHomeBinding;
@@ -27,6 +30,16 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        RecyclerView list = binding.forecastHourList;
+        list.setLayoutManager(layoutManager);
+
+        CustomAdapter customAdapter = new CustomAdapter();
+        list.setAdapter(customAdapter);
+
+        homeViewModel.getHourlyForecast().observe(getViewLifecycleOwner(), customAdapter::setHourlyForecasts);
 
         final TextView conditionText = binding.conditionText;
         homeViewModel.getCondition().observe(getViewLifecycleOwner(), conditionText::setText);
