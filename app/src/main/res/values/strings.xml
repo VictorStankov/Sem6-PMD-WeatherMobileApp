@@ -7,4 +7,7 @@
     <string name="feels_like">Feels Like:</string>
     <string name="humidity">Humidity:</string>
     <string name="weather_image_description">Image of current weather conditions</string>
+    <string name="max_temperature">Max Temperature:</string>
+    <string name="min_temperature">Min Temperature:</string>
+    <string name="rain_chance">Chance of Rain:</string>
 </resources>
