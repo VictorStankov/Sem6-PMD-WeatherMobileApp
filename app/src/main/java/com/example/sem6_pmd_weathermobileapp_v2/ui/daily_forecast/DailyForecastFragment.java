@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2.ui.dashboard;
+package com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,18 +15,18 @@ import com.example.sem6_pmd_weathermobileapp_v2.ConfigHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.DailyForecastAdapter;
 import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
 import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
-import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentDashboardBinding;
+import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentDailyForecastBinding;
 
-public class DashboardFragment extends Fragment {
+public class DailyForecastFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentDailyForecastBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        DailyForecastViewModel dailyForecastViewModel =
+                new ViewModelProvider(this).get(DailyForecastViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentDailyForecastBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
@@ -37,7 +37,7 @@ public class DashboardFragment extends Fragment {
         DailyForecastAdapter dailyForecastAdapter = new DailyForecastAdapter();
         list.setAdapter(dailyForecastAdapter);
 
-        dashboardViewModel.getDailyForecasts().observe(getViewLifecycleOwner(), dailyForecastAdapter::setDailyForecasts);
+        dailyForecastViewModel.getDailyForecasts().observe(getViewLifecycleOwner(), dailyForecastAdapter::setDailyForecasts);
 
         MainActivity activity = (MainActivity) getActivity();
         assert activity != null;
@@ -45,8 +45,8 @@ public class DashboardFragment extends Fragment {
         if (activity.getLocation() == null)
             activity.resetLocation();
 
-        if (dashboardViewModel.getDailyForecasts().getValue() == null)
-            WeatherHelper.getDailyForecast(dashboardViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
+        if (dailyForecastViewModel.getDailyForecasts().getValue() == null)
+            WeatherHelper.getDailyForecast(dailyForecastViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
 
         return root;
     }

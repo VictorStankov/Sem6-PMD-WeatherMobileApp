@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.sem6_pmd_weathermobileapp_v2.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast.DailyForecastFragment"
+        android:label="@string/title_daily_forecast"
+        tools:layout="@layout/fragment_daily_forecast" />
 
     <fragment
         android:id="@+id/navigation_notifications"

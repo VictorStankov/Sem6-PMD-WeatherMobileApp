@@ -12,7 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sem6_pmd_weathermobileapp_v2.models.DailyForecast;
 import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
-import com.example.sem6_pmd_weathermobileapp_v2.ui.dashboard.DashboardViewModel;
+import com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast.DailyForecastViewModel;
 import com.example.sem6_pmd_weathermobileapp_v2.ui.home.HomeViewModel;
 
 import org.json.JSONArray;
@@ -123,7 +123,7 @@ public class WeatherHelper {
         }
     }
 
-    public static void getDailyForecast(DashboardViewModel dvm, String api_base_url, String api_token, Location location, Context ctx){
+    public static void getDailyForecast(DailyForecastViewModel dfvm, String api_base_url, String api_token, Location location, Context ctx){
         List<DailyForecast> dailyForecasts = new ArrayList<>();
 
         if (location == null)
@@ -168,7 +168,7 @@ public class WeatherHelper {
 
                         }
 
-                        dvm.getDailyForecasts().setValue(dailyForecasts);
+                        dfvm.getDailyForecasts().setValue(dailyForecasts);
 
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
