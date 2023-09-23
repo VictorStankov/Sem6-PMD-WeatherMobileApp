@@ -4,16 +4,20 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.sem6_pmd_weathermobileapp_v2.models.DailyForecast;
+
+import java.util.List;
+
 public class DashboardViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final MutableLiveData<List<DailyForecast>> dailyForecasts;
+
+    public MutableLiveData<List<DailyForecast>> getDailyForecasts() {
+        return dailyForecasts;
+    }
 
     public DashboardViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        dailyForecasts = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 }
