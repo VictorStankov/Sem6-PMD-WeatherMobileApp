@@ -65,7 +65,8 @@ public class HomeFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         assert activity != null;
 
-        WeatherHelper.getCurrentWeather(homeViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
+        if (homeViewModel.getHourlyForecast().getValue() == null)
+            WeatherHelper.getCurrentWeather(homeViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
 
         return root;
     }
