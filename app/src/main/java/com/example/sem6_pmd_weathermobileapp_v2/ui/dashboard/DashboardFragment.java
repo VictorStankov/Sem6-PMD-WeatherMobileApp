@@ -9,7 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sem6_pmd_weathermobileapp_v2.DailyForecastAdapter;
 import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
@@ -24,8 +27,16 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+
+        RecyclerView list = binding.forecastDayList;
+        list.setLayoutManager(layoutManager);
+
+        DailyForecastAdapter dailyForecastAdapter = new DailyForecastAdapter();
+        list.setAdapter(dailyForecastAdapter);
+
+        dashboardViewModel.getDailyForecasts().observe(getViewLifecycleOwner(), dailyForecastAdapter::setDailyForecasts);
+
         return root;
     }
 
