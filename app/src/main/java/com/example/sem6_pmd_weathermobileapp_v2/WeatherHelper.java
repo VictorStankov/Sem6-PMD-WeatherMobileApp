@@ -1,7 +1,7 @@
 package com.example.sem6_pmd_weathermobileapp_v2;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 
 import androidx.appcompat.content.res.AppCompatResources;
@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
 import com.example.sem6_pmd_weathermobileapp_v2.ui.home.HomeViewModel;
 
 import org.json.JSONArray;
@@ -22,11 +23,15 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WeatherHelper {
 
     public static void getCurrentWeather(HomeViewModel hvm, String api_base_url, String api_token, Location location, Context ctx) {
+
+        List<HourlyForecast> hourlyForecasts = new ArrayList<>();
 
         if (location != null) {
             JsonObjectRequest weather_api = new JsonObjectRequest(
@@ -62,68 +67,52 @@ public class WeatherHelper {
                             ));
 
 
-    //                        LocalDateTime datetime = LocalDateTime.now();
-    //
-    //                        for (int i = 0; i < forecastDay.length(); ++i) {
-    //                            JSONObject forecastDayObj = forecastDay.getJSONObject(i);
-    //                            JSONArray forecastHour = forecastDayObj.getJSONArray("hour");
-    //
-    //                            for (int j = 0; j < forecastHour.length(); ++j) {
-    //                                JSONObject hour = forecastHour.getJSONObject(j);
-    //                                LocalDateTime hour_time = LocalDateTime.parse(hour.getString("time"), DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
-    //
-    //                                if (
-    //                                        (
-    //                                                hour_time.isBefore(datetime) && hour_time.getHour() != datetime.getHour()
-    //                                        )
-    //                                                || hour_time.isAfter(datetime.plusDays(1))
-    //                                                || Duration.between(hour_time, datetime.truncatedTo(ChronoUnit.HOURS)).toHours() % 2 != 0
-    //                                )
-    //                                    continue;
-    //
-    //                                HorizontalScrollView aa = activity.findViewById(R.id.test);
-    //                                LinearLayout test = activity.findViewById(R.id.linear_layout);
-    //                                test.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
-    //
-    //                                LinearLayout forecastElement = new LinearLayout(activity);
-    //                                forecastElement.setBackground(AppCompatResources.getDrawable(activity, R.drawable.empty_tall_divider));
-    //                                forecastElement.setPadding(10, 5, 10, 5);
-    //                                forecastElement.setOrientation(LinearLayout.VERTICAL);
-    //
-    //                                TextView time = new TextView(activity);
-    //                                time.setText(hour.getString("time").split(" ")[1]);
-    //                                time.setGravity(Gravity.CENTER);
-    //
-    //                                TextView forecastCondition = new TextView(activity);
-    //                                forecastCondition.setText(hour.getString("temp_c") + "° C");
-    //                                forecastCondition.setGravity(Gravity.CENTER);
-    //
-    //                                boolean forecastIsDay = hour.getInt("is_day") == 1;
-    //                                String forecastIcon = hour.getJSONObject("condition").getString("icon");
-    //                                String forecastIconName = (forecastIsDay ? "d" : "n") + forecastIcon.substring(
-    //                                        forecastIcon.lastIndexOf('/') + 1,
-    //                                        forecastIcon.lastIndexOf('/') + 4
-    //                                );
-    //
-    //                                ImageView forecastImage = new ImageView(activity);
-    //                                forecastImage.setImageDrawable(
-    //                                        AppCompatResources.getDrawable(
-    //                                                activity,
-    //                                                activity.getResources().getIdentifier(
-    //                                                        forecastIconName,
-    //                                                        "drawable",
-    //                                                        activity.getPackageName()
-    //                                                )
-    //                                        )
-    //                                );
-    //                                forecastImage.setTag(forecastIcon);
-    //
-    //                                forecastElement.addView(time);
-    //                                forecastElement.addView(forecastImage);
-    //                                forecastElement.addView(forecastCondition);
-    //                                test.addView(forecastElement);
-    //                            }
-    //                        }
+                            LocalDateTime datetime = LocalDateTime.now();
+
+                            for (int i = 0; i < forecastDay.length(); ++i) {
+                                JSONObject forecastDayObj = forecastDay.getJSONObject(i);
+                                JSONArray forecastHour = forecastDayObj.getJSONArray("hour");
+
+                                for (int j = 0; j < forecastHour.length(); ++j) {
+                                    JSONObject hour = forecastHour.getJSONObject(j);
+                                    LocalDateTime hour_time = LocalDateTime.parse(hour.getString("time"), DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
+
+                                    long delta = Duration.between(datetime.truncatedTo(ChronoUnit.HOURS), hour_time).toHours();
+
+                                    if (delta > 6 || delta <= 0)
+                                        continue;
+
+                                    boolean forecastIsDay = hour.getInt("is_day") == 1;
+                                    String forecastIcon = hour.getJSONObject("condition").getString("icon");
+                                    String forecastIconName = (forecastIsDay ? "d" : "n") + forecastIcon.substring(
+                                            forecastIcon.lastIndexOf('/') + 1,
+                                            forecastIcon.lastIndexOf('/') + 4
+                                    );
+
+                                    Drawable image = AppCompatResources.getDrawable(
+                                            ctx,
+                                            ctx.getResources().getIdentifier(
+                                                    forecastIconName,
+                                                    "drawable",
+                                                    ctx.getPackageName()
+                                            )
+                                    );
+
+                                    hourlyForecasts.add(
+                                        new HourlyForecast(
+                                            hour.getString("temp_c") + "° C",
+                                                hour.getString("chance_of_rain") + "%",
+                                                hour.getString("time").split(" ")[1],
+                                                image,
+                                                AppCompatResources.getDrawable(ctx, R.drawable.raindrop)
+                                        )
+                                    );
+
+                                }
+
+                            }
+
+                            hvm.getHourlyForecast().setValue(hourlyForecasts);
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
