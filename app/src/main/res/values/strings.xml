@@ -5,5 +5,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="current_temp">Current temperature:</string>
     <string name="feels_like">Feels Like:</string>
+    <string name="humidity">Humidity:</string>
     <string name="weather_image_description">Image of current weather conditions</string>
 </resources>
