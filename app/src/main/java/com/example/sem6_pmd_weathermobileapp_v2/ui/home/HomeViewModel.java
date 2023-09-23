@@ -5,10 +5,16 @@ import android.graphics.drawable.Drawable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
+
+import java.util.List;
+
 public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<String> regionCountry, cityname, condition, currentTemp, feelsLikeTemp, humidity;
     private final MutableLiveData<Drawable> image;
+
+    private final MutableLiveData<List<HourlyForecast>> hourlyForecast;
 
     public MutableLiveData<String> getRegionCountry() {
         return regionCountry;
@@ -38,6 +44,10 @@ public class HomeViewModel extends ViewModel {
         return image;
     }
 
+    public MutableLiveData<List<HourlyForecast>> getHourlyForecast() {
+        return hourlyForecast;
+    }
+
     public HomeViewModel() {
         regionCountry = new MutableLiveData<>();
         cityname = new MutableLiveData<>();
@@ -46,5 +56,6 @@ public class HomeViewModel extends ViewModel {
         feelsLikeTemp = new MutableLiveData<>();
         humidity = new MutableLiveData<>();
         image = new MutableLiveData<>();
+        hourlyForecast = new MutableLiveData<>();
     }
 }
