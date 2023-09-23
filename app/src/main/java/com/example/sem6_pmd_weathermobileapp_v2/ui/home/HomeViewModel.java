@@ -2,13 +2,12 @@ package com.example.sem6_pmd_weathermobileapp_v2.ui.home;
 
 import android.graphics.drawable.Drawable;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
 
-    private final MutableLiveData<String> regionCountry, cityname, condition, currentTemp, feelsLikeTemp;
+    private final MutableLiveData<String> regionCountry, cityname, condition, currentTemp, feelsLikeTemp, humidity;
     private final MutableLiveData<Drawable> image;
 
     public MutableLiveData<String> getRegionCountry() {
@@ -31,6 +30,10 @@ public class HomeViewModel extends ViewModel {
         return feelsLikeTemp;
     }
 
+    public MutableLiveData<String> getHumidity() {
+        return humidity;
+    }
+
     public MutableLiveData<Drawable> getImage() {
         return image;
     }
@@ -41,6 +44,7 @@ public class HomeViewModel extends ViewModel {
         condition = new MutableLiveData<>();
         currentTemp = new MutableLiveData<>();
         feelsLikeTemp = new MutableLiveData<>();
+        humidity = new MutableLiveData<>();
         image = new MutableLiveData<>();
     }
 }

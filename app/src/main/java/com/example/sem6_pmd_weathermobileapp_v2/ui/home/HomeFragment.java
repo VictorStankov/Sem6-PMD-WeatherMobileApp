@@ -43,6 +43,9 @@ public class HomeFragment extends Fragment {
         final TextView feelsLikeTemp = binding.feelsLikeTemp;
         homeViewModel.getFeelsLikeTemp().observe(getViewLifecycleOwner(), feelsLikeTemp::setText);
 
+        final TextView humidity = binding.humidity;
+        homeViewModel.getHumidity().observe(getViewLifecycleOwner(), humidity::setText);
+
         final ImageView weatherImage = binding.weatherImage;
         homeViewModel.getImage().observe(getViewLifecycleOwner(), weatherImage::setImageDrawable);
 

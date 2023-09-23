@@ -1,24 +1,10 @@
 package com.example.sem6_pmd_weathermobileapp_v2;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.app.ActivityCompat;
-import androidx.viewbinding.ViewBinding;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -65,6 +51,7 @@ public class WeatherHelper {
                             hvm.getCondition().setValue(condition.getString("text"));
                             hvm.getCurrentTemp().setValue(current.getString("temp_c") + "° C");
                             hvm.getFeelsLikeTemp().setValue(current.getString("feelslike_c") + "° C");
+                            hvm.getHumidity().setValue(current.getString("humidity") + "%");
                             hvm.getImage().setValue(AppCompatResources.getDrawable(
                                     ctx,
                                     ctx.getResources().getIdentifier(
