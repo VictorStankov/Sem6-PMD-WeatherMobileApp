@@ -14,7 +14,7 @@ import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAdapter.ViewHolder> {
 
     private List<HourlyForecast> hourlyForecasts = new ArrayList<>();
 
@@ -58,14 +58,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             // Define click listener for the ViewHolder's View
 
             hour = (TextView) view.findViewById(R.id.hour);
-            temp = (TextView) view.findViewById(R.id.temperature);
-            weatherImage = (ImageView) view.findViewById(R.id.weatherImage);
-            rainImage = (ImageView) view.findViewById(R.id.rainImage);
-            rainChance = (TextView) view.findViewById(R.id.rainChance);
+            temp = (TextView) view.findViewById(R.id.temperature_hour);
+            weatherImage = (ImageView) view.findViewById(R.id.weatherImageHour);
+            rainImage = (ImageView) view.findViewById(R.id.rain_image_hour);
+            rainChance = (TextView) view.findViewById(R.id.rain_chance_hour);
         }
     }
 
-    public CustomAdapter() {
+    public HourlyForecastAdapter() {
     }
 
     // Create new views (invoked by the layout manager)

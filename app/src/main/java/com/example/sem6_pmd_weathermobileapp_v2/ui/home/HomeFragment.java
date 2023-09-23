@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sem6_pmd_weathermobileapp_v2.ConfigHelper;
-import com.example.sem6_pmd_weathermobileapp_v2.CustomAdapter;
+import com.example.sem6_pmd_weathermobileapp_v2.HourlyForecastAdapter;
 import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
 import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentHomeBinding;
@@ -36,10 +36,10 @@ public class HomeFragment extends Fragment {
         RecyclerView list = binding.forecastHourList;
         list.setLayoutManager(layoutManager);
 
-        CustomAdapter customAdapter = new CustomAdapter();
-        list.setAdapter(customAdapter);
+        HourlyForecastAdapter hourlyForecastAdapter = new HourlyForecastAdapter();
+        list.setAdapter(hourlyForecastAdapter);
 
-        homeViewModel.getHourlyForecast().observe(getViewLifecycleOwner(), customAdapter::setHourlyForecasts);
+        homeViewModel.getHourlyForecast().observe(getViewLifecycleOwner(), hourlyForecastAdapter::setHourlyForecasts);
 
         final TextView conditionText = binding.conditionText;
         homeViewModel.getCondition().observe(getViewLifecycleOwner(), conditionText::setText);
@@ -63,8 +63,8 @@ public class HomeFragment extends Fragment {
         homeViewModel.getImage().observe(getViewLifecycleOwner(), weatherImage::setImageDrawable);
 
         MainActivity activity = (MainActivity) getActivity();
-
         assert activity != null;
+
         WeatherHelper.getCurrentWeather(homeViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
 
         return root;
