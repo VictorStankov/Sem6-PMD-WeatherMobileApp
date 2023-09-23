@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,7 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sem6_pmd_weathermobileapp_v2.ConfigHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.DailyForecastAdapter;
+import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
+import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
@@ -36,6 +38,11 @@ public class DashboardFragment extends Fragment {
         list.setAdapter(dailyForecastAdapter);
 
         dashboardViewModel.getDailyForecasts().observe(getViewLifecycleOwner(), dailyForecastAdapter::setDailyForecasts);
+
+        MainActivity activity = (MainActivity) getActivity();
+        assert activity != null;
+
+        WeatherHelper.getDailyForecast(dashboardViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
 
         return root;
     }
