@@ -137,8 +137,6 @@ public class WeatherHelper {
                     try {
                         JSONArray forecastDay = response.getJSONObject("forecast").getJSONArray("forecastday");
 
-                        LocalDateTime datetime = LocalDateTime.now();
-
                         for (int i = 0; i < forecastDay.length(); ++i) {
                             JSONObject forecastDayObj = forecastDay.getJSONObject(i);
                             JSONObject day = forecastDayObj.getJSONObject("day");
