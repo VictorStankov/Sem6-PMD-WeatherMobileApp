@@ -42,6 +42,9 @@ public class DashboardFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         assert activity != null;
 
+        if (activity.getLocation() == null)
+            activity.resetLocation();
+
         if (dashboardViewModel.getDailyForecasts().getValue() == null)
             WeatherHelper.getDailyForecast(dashboardViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
 

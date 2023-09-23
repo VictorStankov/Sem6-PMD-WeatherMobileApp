@@ -15,11 +15,14 @@ import com.example.sem6_pmd_weathermobileapp_v2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
     private Location location;
 
     public Location getLocation() {
         return location;
+    }
+
+    public void resetLocation(){
+        location = LocationHelper.getLocation(this);
     }
 
     @Override
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ConfigHelper.getConfigValues(this);
         location = LocationHelper.getLocation(this);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
