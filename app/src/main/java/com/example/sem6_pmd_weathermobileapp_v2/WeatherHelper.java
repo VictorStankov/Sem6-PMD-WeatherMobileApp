@@ -32,7 +32,7 @@ public class WeatherHelper {
     public static void getCurrentWeather(HomeViewModel hvm, String api_base_url, String api_token, Location location, Context ctx) {
 
         List<HourlyForecast> hourlyForecasts = new ArrayList<>();
-        String degrees = ConfigHelper.degrees;
+        String degrees = ConfigHelper.degrees_unit;
 
         if (location != null) {
             JsonObjectRequest weather_api = new JsonObjectRequest(
@@ -126,7 +126,7 @@ public class WeatherHelper {
 
     public static void getDailyForecast(DailyForecastViewModel dfvm, String api_base_url, String api_token, Location location, Context ctx){
         List<DailyForecast> dailyForecasts = new ArrayList<>();
-        String degrees = ConfigHelper.degrees;
+        String degrees = ConfigHelper.degrees_unit;
 
         if (location == null)
             return;
