@@ -10,6 +10,6 @@
     <string name="max_temperature">Max Temperature:</string>
     <string name="min_temperature">Min Temperature:</string>
     <string name="rain_chance">Chance of Rain:</string>
-    <string name="preference_file_key">com.example.sem6_pmd_weathermobileapp</string>
+    <string name="preference_file_key">com.sem6_pmd_weather_mobile_app</string>
     <string name="refresh_button">Refresh</string>
 </resources>
