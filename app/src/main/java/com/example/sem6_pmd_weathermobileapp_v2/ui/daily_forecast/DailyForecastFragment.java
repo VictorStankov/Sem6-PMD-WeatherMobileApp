@@ -46,7 +46,7 @@ public class DailyForecastFragment extends Fragment {
             activity.resetLocation();
 
         if (dailyForecastViewModel.getDailyForecasts().getValue() == null)
-            WeatherHelper.getDailyForecast(dailyForecastViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
+            WeatherHelper.getDailyForecast(dailyForecastViewModel, activity.getLocation(), root.getContext());
 
         return root;
     }

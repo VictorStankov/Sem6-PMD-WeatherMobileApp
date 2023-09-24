@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
             activity.resetLocation();
 
         if (homeViewModel.getHourlyForecast().getValue() == null)
-            WeatherHelper.getCurrentWeather(homeViewModel, ConfigHelper.api_url, ConfigHelper.api_token, activity.getLocation(), root.getContext());
+            WeatherHelper.getCurrentWeather(homeViewModel, activity.getLocation(), root.getContext());
 
         return root;
     }
