@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2;
+package com.sem6_pmd_weather_mobile_app;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.sem6_pmd_weathermobileapp_v2", appContext.getPackageName());
+        assertEquals("com.sem6_pmd_weather_mobile_app", appContext.getPackageName());
     }
 }

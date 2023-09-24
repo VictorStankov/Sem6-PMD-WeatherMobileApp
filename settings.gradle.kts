@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Sem6-PMD_WeatherMobileApp_v2"
+rootProject.name = "Sem6_PMD_WeatherMobileApp"
 include(":app")
  

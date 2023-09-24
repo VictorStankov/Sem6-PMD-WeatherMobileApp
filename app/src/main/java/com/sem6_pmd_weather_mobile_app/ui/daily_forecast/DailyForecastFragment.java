@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast;
+package com.sem6_pmd_weather_mobile_app.ui.daily_forecast;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sem6_pmd_weathermobileapp_v2.ConfigHelper;
-import com.example.sem6_pmd_weathermobileapp_v2.DailyForecastAdapter;
-import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
-import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
-import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentDailyForecastBinding;
+import com.sem6_pmd_weather_mobile_app.ConfigHelper;
+import com.sem6_pmd_weather_mobile_app.DailyForecastAdapter;
+import com.sem6_pmd_weather_mobile_app.MainActivity;
+import com.sem6_pmd_weather_mobile_app.WeatherHelper;
+import com.sem6_pmd_weather_mobile_app.databinding.FragmentDailyForecastBinding;
 
 import java.util.Objects;
 

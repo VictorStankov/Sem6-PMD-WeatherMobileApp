@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2;
+package com.sem6_pmd_weather_mobile_app;
 
 import android.content.Context;
 import android.content.SharedPreferences;

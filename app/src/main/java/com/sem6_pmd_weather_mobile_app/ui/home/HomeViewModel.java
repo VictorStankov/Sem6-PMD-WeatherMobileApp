@@ -1,11 +1,11 @@
-package com.example.sem6_pmd_weathermobileapp_v2.ui.home;
+package com.sem6_pmd_weather_mobile_app.ui.home;
 
 import android.graphics.drawable.Drawable;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
+import com.sem6_pmd_weather_mobile_app.models.HourlyForecast;
 
 import java.util.List;
 

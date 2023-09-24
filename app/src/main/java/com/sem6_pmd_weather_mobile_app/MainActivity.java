@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2;
+package com.sem6_pmd_weather_mobile_app;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.sem6_pmd_weathermobileapp_v2.databinding.ActivityMainBinding;
+import com.sem6_pmd_weather_mobile_app.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

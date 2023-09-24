@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.sem6_pmd_weathermobileapp_v2.ui.home.HomeFragment"
+        android:name="com.sem6_pmd_weather_mobile_app.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast.DailyForecastFragment"
+        android:name="com.sem6_pmd_weather_mobile_app.ui.daily_forecast.DailyForecastFragment"
         android:label="@string/title_daily_forecast"
         tools:layout="@layout/fragment_daily_forecast" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.sem6_pmd_weathermobileapp_v2.ui.settings.SettingsFragment"
+        android:name="com.sem6_pmd_weather_mobile_app.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

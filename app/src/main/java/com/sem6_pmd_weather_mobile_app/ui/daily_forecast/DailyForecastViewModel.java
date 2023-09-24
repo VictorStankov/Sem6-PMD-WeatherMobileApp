@@ -1,9 +1,9 @@
-package com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast;
+package com.sem6_pmd_weather_mobile_app.ui.daily_forecast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.sem6_pmd_weathermobileapp_v2.models.DailyForecast;
+import com.sem6_pmd_weather_mobile_app.models.DailyForecast;
 
 import java.util.List;
 

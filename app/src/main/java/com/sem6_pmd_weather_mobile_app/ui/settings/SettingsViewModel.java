@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2.ui.settings;
+package com.sem6_pmd_weather_mobile_app.ui.settings;
 
 import androidx.lifecycle.ViewModel;
 

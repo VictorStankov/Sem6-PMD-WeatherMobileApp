@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2.ui.settings;
+package com.sem6_pmd_weather_mobile_app.ui.settings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.sem6_pmd_weathermobileapp_v2.ConfigHelper;
-import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
-import com.example.sem6_pmd_weathermobileapp_v2.R;
-import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentSettingsBinding;
+import com.sem6_pmd_weather_mobile_app.ConfigHelper;
+import com.sem6_pmd_weather_mobile_app.MainActivity;
+import com.sem6_pmd_weather_mobile_app.R;
+import com.sem6_pmd_weather_mobile_app.databinding.FragmentSettingsBinding;
 
 import java.util.ArrayList;
 

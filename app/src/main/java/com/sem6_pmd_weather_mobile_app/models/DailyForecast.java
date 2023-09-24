@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2.models;
+package com.sem6_pmd_weather_mobile_app.models;
 
 import android.graphics.drawable.Drawable;
 

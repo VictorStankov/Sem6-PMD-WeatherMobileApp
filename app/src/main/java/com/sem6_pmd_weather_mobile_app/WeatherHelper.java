@@ -1,4 +1,4 @@
-package com.example.sem6_pmd_weathermobileapp_v2;
+package com.sem6_pmd_weather_mobile_app;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,10 +10,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.sem6_pmd_weathermobileapp_v2.models.DailyForecast;
-import com.example.sem6_pmd_weathermobileapp_v2.models.HourlyForecast;
-import com.example.sem6_pmd_weathermobileapp_v2.ui.daily_forecast.DailyForecastViewModel;
-import com.example.sem6_pmd_weathermobileapp_v2.ui.home.HomeViewModel;
+import com.sem6_pmd_weather_mobile_app.models.DailyForecast;
+import com.sem6_pmd_weather_mobile_app.models.HourlyForecast;
+import com.sem6_pmd_weather_mobile_app.ui.daily_forecast.DailyForecastViewModel;
+import com.sem6_pmd_weather_mobile_app.ui.home.HomeViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
