@@ -17,6 +17,8 @@ import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
 import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentDailyForecastBinding;
 
+import java.util.Objects;
+
 public class DailyForecastFragment extends Fragment {
 
     private FragmentDailyForecastBinding binding;
@@ -45,7 +47,10 @@ public class DailyForecastFragment extends Fragment {
         if (activity.getLocation() == null)
             activity.resetLocation();
 
-        if (dailyForecastViewModel.getDailyForecasts().getValue() == null)
+        if (
+                dailyForecastViewModel.getDailyForecasts().getValue() == null ||
+                !Objects.equals(dailyForecastViewModel.getMeasurementUnit().getValue(), ConfigHelper.degrees_unit)
+        )
             WeatherHelper.getDailyForecast(dailyForecastViewModel, activity.getLocation(), root.getContext());
 
         return root;

@@ -19,6 +19,8 @@ import com.example.sem6_pmd_weathermobileapp_v2.MainActivity;
 import com.example.sem6_pmd_weathermobileapp_v2.WeatherHelper;
 import com.example.sem6_pmd_weathermobileapp_v2.databinding.FragmentHomeBinding;
 
+import java.util.Objects;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
@@ -68,7 +70,10 @@ public class HomeFragment extends Fragment {
         if (activity.getLocation() == null)
             activity.resetLocation();
 
-        if (homeViewModel.getHourlyForecast().getValue() == null)
+        if (
+                homeViewModel.getHourlyForecast().getValue() == null ||
+                !Objects.equals(homeViewModel.getMeasurementUnit().getValue(), ConfigHelper.degrees_unit)
+        )
             WeatherHelper.getCurrentWeather(homeViewModel, activity.getLocation(), root.getContext());
 
         return root;
