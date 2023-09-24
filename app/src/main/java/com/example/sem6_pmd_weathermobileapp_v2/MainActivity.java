@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     public void resetLocation(){
         location = LocationHelper.getLocation(this);
     }
+    public void updateDegreeMeasurement(String newUnit){
+        ConfigHelper.updateDegreeValue(this, newUnit);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

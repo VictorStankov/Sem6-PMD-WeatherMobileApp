@@ -31,4 +31,22 @@ public class ConfigHelper {
             Log.e("Config", "Unable to open config file.");
         }
     }
+
+    public static void updateDegreeValue(Context context, String newUnit){
+        Resources resources = context.getResources();
+
+        try {
+            InputStream rawResource = resources.openRawResource(R.raw.config);
+            Properties properties = new Properties();
+            properties.load(rawResource);
+            properties.setProperty("degrees", newUnit);
+            degrees_unit =properties.getProperty("degrees");
+        }
+        catch (Resources.NotFoundException e){
+            Log.e("Config", "Unable to find config file: " + e.getMessage());
+        }
+        catch (IOException e){
+            Log.e("Config", "Unable to open config file.");
+        }
+    }
 }
