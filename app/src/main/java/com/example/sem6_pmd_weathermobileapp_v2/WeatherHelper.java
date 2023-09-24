@@ -32,6 +32,7 @@ public class WeatherHelper {
     public static void getCurrentWeather(HomeViewModel hvm, String api_base_url, String api_token, Location location, Context ctx) {
 
         List<HourlyForecast> hourlyForecasts = new ArrayList<>();
+        String degrees = ConfigHelper.degrees;
 
         if (location != null) {
             JsonObjectRequest weather_api = new JsonObjectRequest(
@@ -54,8 +55,8 @@ public class WeatherHelper {
                             hvm.getRegionCountry().setValue(regCountryText);
                             hvm.getCityName().setValue(loc.getString("name"));
                             hvm.getCondition().setValue(condition.getString("text"));
-                            hvm.getCurrentTemp().setValue(current.getString("temp_c") + "° C");
-                            hvm.getFeelsLikeTemp().setValue(current.getString("feelslike_c") + "° C");
+                            hvm.getCurrentTemp().setValue(current.getString("temp_" + degrees.toLowerCase()) + "° " + degrees);
+                            hvm.getFeelsLikeTemp().setValue(current.getString("feelslike_" + degrees.toLowerCase()) + "° " + degrees);
                             hvm.getHumidity().setValue(current.getString("humidity") + "%");
                             hvm.getImage().setValue(AppCompatResources.getDrawable(
                                     ctx,
@@ -100,7 +101,7 @@ public class WeatherHelper {
 
                                     hourlyForecasts.add(
                                         new HourlyForecast(
-                                            hour.getString("temp_c") + "° C",
+                                            hour.getString("temp_" + degrees.toLowerCase()) + "° " + degrees,
                                                 hour.getString("chance_of_rain") + "%",
                                                 hour.getString("time").split(" ")[1],
                                                 image,
@@ -125,6 +126,7 @@ public class WeatherHelper {
 
     public static void getDailyForecast(DailyForecastViewModel dfvm, String api_base_url, String api_token, Location location, Context ctx){
         List<DailyForecast> dailyForecasts = new ArrayList<>();
+        String degrees = ConfigHelper.degrees;
 
         if (location == null)
             return;
@@ -159,8 +161,8 @@ public class WeatherHelper {
                             dailyForecasts.add(
                                 new DailyForecast(
                                         forecastDayObj.getString("date"),
-                                        day.getString("maxtemp_c") + "° C",
-                                        day.getString("mintemp_c") + "° C",
+                                        day.getString("maxtemp_" + degrees.toLowerCase()) + "° " + degrees,
+                                        day.getString("mintemp_" + degrees.toLowerCase()) + "° " + degrees,
                                         day.getString("daily_chance_of_rain") + "%",
                                         image
                                 )

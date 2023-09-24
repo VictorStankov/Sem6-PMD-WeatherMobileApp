@@ -11,6 +11,7 @@ import java.util.Properties;
 public class ConfigHelper {
     public static String api_url;
     public static String api_token;
+    public static String degrees;
 
     public static void getConfigValues(Context context){
         Resources resources = context.getResources();
@@ -21,6 +22,7 @@ public class ConfigHelper {
             properties.load(rawResource);
             api_url = properties.getProperty("api_url");
             api_token = properties.getProperty("api_token");
+            degrees = properties.getProperty("degrees");
         }
         catch (Resources.NotFoundException e){
             Log.e("Config", "Unable to find config file: " + e.getMessage());
