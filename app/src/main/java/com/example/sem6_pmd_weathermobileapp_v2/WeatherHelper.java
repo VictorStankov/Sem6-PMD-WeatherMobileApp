@@ -68,6 +68,7 @@ public class WeatherHelper {
                                             ctx.getPackageName()
                                     )
                             ));
+                            hvm.getMeasurementUnit().setValue(degrees);
 
 
                             LocalDateTime datetime = LocalDateTime.now();
@@ -175,6 +176,7 @@ public class WeatherHelper {
                         }
 
                         dfvm.getDailyForecasts().setValue(dailyForecasts);
+                        dfvm.getMeasurementUnit().setValue(degrees);
 
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
