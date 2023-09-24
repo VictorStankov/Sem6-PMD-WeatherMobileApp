@@ -62,6 +62,9 @@ public class HomeFragment extends Fragment {
         final TextView humidity = binding.humidity;
         homeViewModel.getHumidity().observe(getViewLifecycleOwner(), humidity::setText);
 
+        final TextView measurementHour = binding.measurementHour;
+        homeViewModel.getMeasurementHour().observe(getViewLifecycleOwner(), measurementHour::setText);
+
         final ImageView weatherImage = binding.weatherImage;
         homeViewModel.getImage().observe(getViewLifecycleOwner(), weatherImage::setImageDrawable);
 

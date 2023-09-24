@@ -68,6 +68,7 @@ public class WeatherHelper {
                                             ctx.getPackageName()
                                     )
                             ));
+                            hvm.getMeasurementHour().setValue(current.getString("last_updated"));
                             hvm.getMeasurementUnit().setValue(degrees);
 
 

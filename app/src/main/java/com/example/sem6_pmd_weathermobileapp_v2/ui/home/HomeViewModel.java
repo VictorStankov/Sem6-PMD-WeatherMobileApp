@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HomeViewModel extends ViewModel {
 
-    private final MutableLiveData<String> regionCountry, cityName, condition, currentTemp, feelsLikeTemp, humidity, measurementUnit;
+    private final MutableLiveData<String> regionCountry, cityName, condition, currentTemp, feelsLikeTemp, humidity, measurementHour, measurementUnit;
     private final MutableLiveData<Drawable> image;
 
     private final MutableLiveData<List<HourlyForecast>> hourlyForecast;
@@ -48,6 +48,10 @@ public class HomeViewModel extends ViewModel {
         return hourlyForecast;
     }
 
+    public MutableLiveData<String> getMeasurementHour() {
+        return measurementHour;
+    }
+
     public MutableLiveData<String> getMeasurementUnit() {
         return measurementUnit;
     }
@@ -61,6 +65,7 @@ public class HomeViewModel extends ViewModel {
         humidity = new MutableLiveData<>();
         image = new MutableLiveData<>();
         hourlyForecast = new MutableLiveData<>();
+        measurementHour = new MutableLiveData<>();
         measurementUnit = new MutableLiveData<>();
     }
 }
