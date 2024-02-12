@@ -8,18 +8,15 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
+
+import java.util.List;
 
 public class LocationHelper {
     private static final LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
         }
 
         @Override
@@ -48,12 +45,11 @@ public class LocationHelper {
         if (!locationPermissionIsGiven(context))
             return null;
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        Location location = null;
+        List<String> providers = locationManager.getProviders(true);
 
-        Location location =  locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        if (location == null)
-            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
+        for (int i= providers.size() - 1; i>=0 && location == null; i--)
+            location = locationManager.getLastKnownLocation(providers.get(i));
 
         return location;
     }
