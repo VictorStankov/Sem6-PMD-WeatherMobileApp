@@ -84,7 +84,7 @@ public class WeatherHelper {
 
                                     long delta = Duration.between(datetime.truncatedTo(ChronoUnit.HOURS), hour_time).toHours();
 
-                                    if (delta > 10 || delta <= 0)
+                                    if (delta > 12 || delta <= 0)
                                         continue;
 
                                     boolean forecastIsDay = hour.getInt("is_day") == 1;
