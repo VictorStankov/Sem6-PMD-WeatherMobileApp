@@ -1,4 +1,4 @@
-package com.sem6_pmd_weather_mobile_app;
+package com.sem6_pmd_weather_mobile_app.ui.daily_forecast;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sem6_pmd_weather_mobile_app.R;
 import com.sem6_pmd_weather_mobile_app.models.DailyForecast;
 
 import java.util.ArrayList;

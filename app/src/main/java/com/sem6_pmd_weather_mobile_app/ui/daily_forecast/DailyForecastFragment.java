@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sem6_pmd_weather_mobile_app.ConfigHelper;
-import com.sem6_pmd_weather_mobile_app.DailyForecastAdapter;
 import com.sem6_pmd_weather_mobile_app.MainActivity;
 import com.sem6_pmd_weather_mobile_app.WeatherHelper;
 import com.sem6_pmd_weather_mobile_app.databinding.FragmentDailyForecastBinding;
