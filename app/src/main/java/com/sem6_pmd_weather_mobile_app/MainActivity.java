@@ -1,10 +1,13 @@
 package com.sem6_pmd_weather_mobile_app;
 
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.widget.Toast;
 
 //import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -53,5 +56,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null)
             this.getSupportActionBar().hide();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                this.recreate();
+            }
+            else {
+                Toast.makeText(this, "Location permission is required for this app", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
