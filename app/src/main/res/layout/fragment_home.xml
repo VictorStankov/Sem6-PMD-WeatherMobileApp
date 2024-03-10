@@ -8,21 +8,57 @@
 
     <TextView
         android:id="@+id/region_country"
-        android:layout_width="282dp"
-        android:layout_height="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/city_name"
-        android:layout_width="149dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/region_country"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/region_country" />
+
+    <ImageView
+        android:id="@+id/weatherImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/weather_image_description"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city_name"
+        tools:srcCompat="@drawable/d113" />
+
+    <TextView
+        android:id="@+id/conditionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherImage" />
+
+    <TextView
+        android:id="@+id/cur_temp_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text='@string/current_temp'
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionText" />
 
     <TextView
         android:id="@+id/current_temp"
@@ -33,18 +69,11 @@
         app:layout_constraintTop_toTopOf="@+id/cur_temp_text" />
 
     <TextView
-        android:id="@+id/cur_temp_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/conditionText"
-        app:layout_constraintTop_toBottomOf="@+id/conditionText" />
-
-    <TextView
         android:id="@+id/feels_like_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/feels_like"
         app:layout_constraintStart_toStartOf="@+id/cur_temp_text"
         app:layout_constraintTop_toBottomOf="@+id/cur_temp_text" />
 
@@ -56,41 +85,49 @@
         app:layout_constraintTop_toTopOf="@+id/feels_like_text" />
 
     <TextView
-        android:id="@+id/conditionText"
+        android:id="@+id/humidity_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/city_name"
-        app:layout_constraintTop_toBottomOf="@+id/city_name" />
+        android:text="@string/humidity"
+        app:layout_constraintStart_toStartOf="@+id/feels_like_text"
+        app:layout_constraintTop_toBottomOf="@+id/feels_like_text" />
 
-    <ImageView
-        android:id="@+id/weatherImage"
+    <TextView
+        android:id="@+id/humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:adjustViewBounds="false"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintStart_toStartOf="@+id/feels_like_temp"
+        app:layout_constraintTop_toTopOf="@+id/humidity_text" />
 
-    <HorizontalScrollView
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/forecast_hour_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feels_like_temp">
+        app:layout_constraintTop_toBottomOf="@+id/humidity_text" />
 
-        <LinearLayout
-            android:id="@+id/test"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/refresh_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/refresh_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
-    </HorizontalScrollView>
+    <TextView
+        android:id="@+id/measurement_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/refresh_button"
+        app:layout_constraintStart_toStartOf="@+id/refresh_button"
+        app:layout_constraintTop_toBottomOf="@+id/refresh_button" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

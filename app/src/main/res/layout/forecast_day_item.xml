@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end">
+
+        <ImageView
+            android:id="@+id/weather_image_day"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/weather_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/weather_image_day"
+            app:layout_constraintStart_toStartOf="@+id/weather_image_day"
+            app:layout_constraintTop_toBottomOf="@+id/weather_image_day" />
+
+        <TextView
+            android:id="@+id/max_temperature_day_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/max_temperature"
+            app:layout_constraintStart_toEndOf="@+id/weather_image_day"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/max_temperature_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintStart_toEndOf="@+id/max_temperature_day_text"
+            app:layout_constraintTop_toTopOf="@+id/max_temperature_day_text" />
+
+        <TextView
+            android:id="@+id/min_temperature_day_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/min_temperature"
+            app:layout_constraintStart_toStartOf="@+id/max_temperature_day_text"
+            app:layout_constraintTop_toBottomOf="@+id/max_temperature_day_text" />
+
+        <TextView
+            android:id="@+id/min_temperature_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintStart_toStartOf="@+id/max_temperature_day"
+            app:layout_constraintTop_toBottomOf="@+id/max_temperature_day" />
+
+        <TextView
+            android:id="@+id/rain_chance_day_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/rain_chance"
+            app:layout_constraintStart_toStartOf="@+id/min_temperature_day_text"
+            app:layout_constraintTop_toBottomOf="@+id/min_temperature_day_text" />
+
+        <TextView
+            android:id="@+id/rain_chance_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintStart_toStartOf="@+id/min_temperature_day"
+            app:layout_constraintTop_toBottomOf="@+id/min_temperature_day" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

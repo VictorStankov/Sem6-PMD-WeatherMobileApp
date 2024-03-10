@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">Weather App</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Weather App</string>
-    <string name="nav_header_subtitle">vstankov@tu-sofia.bg</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_home">Current Weather</string>
+    <string name="title_daily_forecast">Daily Forecast</string>
+    <string name="title_settings">Settings</string>
+    <string name="current_temp">Current temperature:</string>
+    <string name="feels_like">Feels Like:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="weather_image_description">Image of current weather conditions</string>
+    <string name="max_temperature">Max Temperature:</string>
+    <string name="min_temperature">Min Temperature:</string>
+    <string name="rain_chance">Chance of Rain:</string>
+    <string name="preference_file_key">com.sem6_pmd_weather_mobile_app</string>
+    <string name="refresh_button">Refresh</string>
 </resources>
